@@ -53,9 +53,9 @@ class MemoryAgent:
         )
         
         try:
-            if agent_input.task_type.value == "memory_retrieval":
+            if agent_input.task_type == "memory_retrieval":
                 result = await self._retrieve_memory(agent_input)
-            elif agent_input.task_type.value == "memory_storage":
+            elif agent_input.task_type == "memory_storage":
                 result = await self._store_memory(agent_input)
             else:
                 raise ValueError(f"Unsupported memory task type: {agent_input.task_type}")
@@ -65,7 +65,7 @@ class MemoryAgent:
             logger.info(
                 "Memory agent completed",
                 task_id=str(agent_input.task_id),
-                operation=agent_input.task_type.value
+                operation=agent_input.task_type
             )
             
             return AgentOutput(

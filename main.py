@@ -15,6 +15,12 @@ from src.utils.logging import get_logger
 from src.memory.database import db_manager
 from src.models.core import OrchestratorRequest, OrchestratorResponse
 from src.orchestrator.orchestrator import orchestrator
+from src.api.routes.memory import router as memory_router
+from fastapi import FastAPI
+
+
+
+
 
 logger = get_logger(__name__)
 
@@ -47,7 +53,7 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
-
+app.include_router(memory_router)
 
 # ============================================================
 # Middleware
